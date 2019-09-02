@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "1045068387030",
+    "firebase_url": "https://barcodescanner-3c934.firebaseio.com",
+    "project_id": "barcodescanner-3c934",
+    "storage_bucket": "barcodescanner-3c934.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045068387030:android:1a50c4c3d3bb9e14",
+        "android_client_info": {
+          "package_name": "com.example.barcodetest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045068387030-t4stn8a2m3q78k71r4hu32j9dat7k2hk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPzJWcZRFgSrSy-mbkec0bv89AIDV_1RA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045068387030-t4stn8a2m3q78k71r4hu32j9dat7k2hk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045068387030:android:d156a43c5da2d5d4",
+        "android_client_info": {
+          "package_name": "com.google.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045068387030-t4stn8a2m3q78k71r4hu32j9dat7k2hk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPzJWcZRFgSrSy-mbkec0bv89AIDV_1RA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045068387030-t4stn8a2m3q78k71r4hu32j9dat7k2hk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

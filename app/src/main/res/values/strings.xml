@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">BarcodeTest</string>
+    <string name="title_activity_bottom__navigation_">Bottom_Navigation_Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_login">Login</string>
+    <string name="title_email">Email</string>
+    <string name="title_password">Password</string>
+    <string name="title_signup">Sign up</string>
+    <string name="title_firebase">Firebase list</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

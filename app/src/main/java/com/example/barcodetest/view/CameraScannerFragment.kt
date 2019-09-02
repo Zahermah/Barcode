@@ -1,0 +1,61 @@
+package com.example.barcodetest.view
+
+
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.barcodetest.testForFirebase.FirebaseEanCode
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.zxing.Result
+import me.dm7.barcodescanner.zxing.ZXingScannerView
+
+
+const val PERMISSION_REQUEST_CAMERA = 1
+
+
+class CameraScannerFragment : Fragment(), ZXingScannerView.ResultHandler {
+
+    private val REQUEST_CAMERA = 1
+    private var zxingScannerView: ZXingScannerView? = null
+    private var TAG = "CameraScannerFragment"
+
+    var firebaseAuth = FirebaseAuth.getInstance()
+
+    private fun addToFirebaseDatabase(eanCode: String?) {
+        val databaseReference = FirebaseDatabase.getInstance().getReference("/EAN")
+        val eanId = databaseReference.push().key
+        val ean = eanId?.let { eanCode?.let { it1 -> FirebaseEanCode(it, it1) } }
+        eanId?.let { databaseReference.child(it).setValue(ean) }
+    }
+
+    override fun handleResult(rawResult: Result?) {
+        addToFirebaseDatabase(rawResult?.text)
+        zxingScannerView?.startCamera()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        zxingScannerView = ZXingScannerView(context)
+        zxingScannerView!!.setAspectTolerance(0.5f)
+        zxingScannerView?.setResultHandler(this)
+        return zxingScannerView
+    }
+
+    override fun onPause() {
+        super.onPause()
+        zxingScannerView?.stopCamera()           // Stop camera on pause
+    }
+
+    override fun onResume() {
+        super.onResume()
+        zxingScannerView?.setResultHandler(this)
+        zxingScannerView?.startCamera()
+
+    }
+}

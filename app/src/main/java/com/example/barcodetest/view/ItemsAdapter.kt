@@ -1,0 +1,30 @@
+package com.example.barcodetest.view
+
+import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import com.example.barcodetest.R
+import com.example.barcodetest.ViewHolder.ItemsViewHolder
+import com.example.barcodetest.model.Items
+
+
+class ItemsAdapter(private var itemsList: ArrayList<Items>) : RecyclerView.Adapter<ItemsViewHolder>() {
+
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemsViewHolder {
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_view_fragment, viewGroup, false)
+        return ItemsViewHolder(view)
+    }
+
+    override fun onBindViewHolder(viewHolder: ItemsViewHolder, postion: Int) {
+            viewHolder.bindView(itemsList[postion])
+
+    }
+
+    fun setItemsList(addeditemsList: ArrayList<Items>) {
+        this.itemsList = addeditemsList
+        notifyDataSetChanged()
+    }
+
+    override fun getItemCount() = itemsList.count().and(itemsList.size)
+}
