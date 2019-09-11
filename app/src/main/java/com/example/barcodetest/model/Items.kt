@@ -9,7 +9,11 @@ data class Items(
     var brand: String,
     @SerializedName("description")
     @Expose
-    var description: String
+    var description: String,
+    @SerializedName("title")
+    @Expose
+    var title: String
+
     /*
     @SerializedName("images")
     var images: Array<String> = arrayOf()

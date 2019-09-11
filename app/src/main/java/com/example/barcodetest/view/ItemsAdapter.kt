@@ -8,23 +8,32 @@ import com.example.barcodetest.ViewHolder.ItemsViewHolder
 import com.example.barcodetest.model.Items
 
 
-class ItemsAdapter(private var itemsList: ArrayList<Items>) : RecyclerView.Adapter<ItemsViewHolder>() {
+class ItemsAdapter(private var itemsList: ArrayList<Items>) :
+    RecyclerView.Adapter<ItemsViewHolder>() {
 
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemsViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.card_view_fragment, viewGroup, false)
+        val view = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.card_view_fragment, viewGroup, false)
+        addItems(itemsList)
         return ItemsViewHolder(view)
     }
 
     override fun onBindViewHolder(viewHolder: ItemsViewHolder, postion: Int) {
-            viewHolder.bindView(itemsList[postion])
-
+        viewHolder.bindView(itemsList[postion])
     }
 
-    fun setItemsList(addeditemsList: ArrayList<Items>) {
-        this.itemsList = addeditemsList
-        notifyDataSetChanged()
+    override fun getItemCount(): Int {
+        return itemsList.count()
     }
 
-    override fun getItemCount() = itemsList.count().and(itemsList.size)
+    fun removeItem(pos: Int) {
+        notifyItemRemoved(pos)
+        notifyItemRangeChanged(pos, itemsList.size)
+    }
+
+    fun addItems(items: List<Items>) {
+        itemsList.addAll(items)
+    }
+
 }

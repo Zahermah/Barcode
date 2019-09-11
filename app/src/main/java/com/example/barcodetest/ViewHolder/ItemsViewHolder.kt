@@ -7,8 +7,10 @@ import kotlinx.android.synthetic.main.card_view_fragment.view.*
 
 class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bindView(item: Items) {
-        itemView.Brand_Title.text = item.brand
+        itemView.Item_brand.text = item.brand
+        itemView.Item_title.text = item.title
         itemView.Item_description.text = item.description
+
 
     }
 }

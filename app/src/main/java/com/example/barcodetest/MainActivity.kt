@@ -17,6 +17,7 @@ import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
     private var fragment: Fragment? = null
+    private val REQUEST_CAMERA = 1
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {

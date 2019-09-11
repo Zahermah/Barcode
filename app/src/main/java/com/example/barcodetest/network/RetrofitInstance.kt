@@ -7,7 +7,7 @@ const val BASE_URL = "https://api.upcitemdb.com/prod/"
 
 class RetrofitInstance {
 
-    fun getRetrofitInstance(): Retrofit{
+    fun getRetrofitInstance(): Retrofit {
         var retrofit: Retrofit =
             Retrofit.Builder()
                 .baseUrl(BASE_URL)

@@ -1,11 +1,7 @@
 package com.example.barcodetest.view
 
 
-import android.Manifest
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +18,6 @@ const val PERMISSION_REQUEST_CAMERA = 1
 
 class CameraScannerFragment : Fragment(), ZXingScannerView.ResultHandler {
 
-    private val REQUEST_CAMERA = 1
     private var zxingScannerView: ZXingScannerView? = null
     private var TAG = "CameraScannerFragment"
 
@@ -40,7 +35,11 @@ class CameraScannerFragment : Fragment(), ZXingScannerView.ResultHandler {
         zxingScannerView?.startCamera()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         zxingScannerView = ZXingScannerView(context)
         zxingScannerView!!.setAspectTolerance(0.5f)
         zxingScannerView?.setResultHandler(this)
@@ -56,6 +55,5 @@ class CameraScannerFragment : Fragment(), ZXingScannerView.ResultHandler {
         super.onResume()
         zxingScannerView?.setResultHandler(this)
         zxingScannerView?.startCamera()
-
     }
 }
