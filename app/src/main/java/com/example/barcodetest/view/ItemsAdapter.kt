@@ -15,7 +15,6 @@ class ItemsAdapter(private var itemsList: ArrayList<Items>) :
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemsViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.card_view_fragment, viewGroup, false)
-        addItems(itemsList)
         return ItemsViewHolder(view)
     }
 
@@ -23,17 +22,15 @@ class ItemsAdapter(private var itemsList: ArrayList<Items>) :
         viewHolder.bindView(itemsList[postion])
     }
 
-    override fun getItemCount(): Int {
-        return itemsList.count()
-    }
+    override fun getItemCount() = itemsList.count()
+
 
     fun removeItem(pos: Int) {
         notifyItemRemoved(pos)
         notifyItemRangeChanged(pos, itemsList.size)
     }
 
-    fun addItems(items: List<Items>) {
-        itemsList.addAll(items)
-    }
+
 
 }
+
