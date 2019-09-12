@@ -75,12 +75,12 @@ class ItemsViewFragment : Fragment() {
                 delay(2500)
                 call.enqueue(object : Callback<ItemsList> {
                     override fun onFailure(call: Call<ItemsList>, t: Throwable) {
-                     //   Toast.makeText(context, "Could not fetch data", Toast.LENGTH_LONG).show()
+                       Toast.makeText(activity?.applicationContext, "Could not fetch data", Toast.LENGTH_LONG).show()
                     }
 
                     override fun onResponse(call: Call<ItemsList>, response: Response<ItemsList>) {
                         Log.i(TAG, response.body().toString())
-                        Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity?.applicationContext, response.toString(), Toast.LENGTH_SHORT).show()
                         response.body()?.getitemsArrayList()?.let { generateItemsList(it) }
 
 
@@ -93,7 +93,7 @@ class ItemsViewFragment : Fragment() {
 
     fun generateItemsList(getitemsArrayList: ArrayList<Items>) {
         recyclerView?.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
             adapter = ItemsAdapter(addItems(getitemsArrayList))
             recyclerView.setHasFixedSize(true)
@@ -104,6 +104,7 @@ class ItemsViewFragment : Fragment() {
 
     fun addItems(items: ArrayList<Items>): ArrayList<Items> {
         listOfItems.addAll(items)
+        recyclerView.setHasFixedSize(true)
         recyclerView.adapter?.notifyDataSetChanged()
         return listOfItems
     }
