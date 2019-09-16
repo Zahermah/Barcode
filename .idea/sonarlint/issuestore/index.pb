@@ -29,3 +29,13 @@ k
 ;app/src/main/java/com/example/barcodetest/model/EanModel.kt,c\5\c58fc2308b5315988c0082d1de2c27e3c0425ccd
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+o
+?app/src/main/java/com/example/barcodetest/network/getItemApi.kt,8\5\85e3a7f8db9edf5f0309f1a25936d06f1c461be4
+l
+<app/src/main/java/com/example/barcodetest/model/ItemsList.kt,b\8\b8b18fac86266a30972dbd821e10412929a99e40
+i
+9app/src/main/java/com/example/barcodetest/MainActivity.kt,8\4\84b01553df4c8229b821641141273ffe91d2f58c
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+j
+:app/src/main/java/com/example/barcodetest/WelcomeSplash.kt,4\8\4821b648d26ad32b0cf184ab9338e8c72777c652
