@@ -20,21 +20,22 @@ import com.google.firebase.FirebaseApp
 
 
 class MainActivity : AppCompatActivity() {
-    private var fragment: Fragment? = null
 
+    private var fragment: Fragment? = null
     private val REQUEST_CAMERA_Permission = arrayOf(Manifest.permission.CAMERA)
     private val REQUEST_CODE = 10
 
 
     private val onNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
+
             when (item.itemId) {
-                R.id.navigation_home -> {
-                    switchFragment(ItemsViewFragment())
-                    return@OnNavigationItemSelectedListener true
-                }
                 R.id.navigation_dashboard -> {
                     switchFragment(CameraScannerFragment())
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_home -> {
+                    switchFragment(ItemsViewFragment())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_firebase -> {
@@ -53,7 +54,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         FirebaseApp.initializeApp(this)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        navView.menu.findItem(R.id.navigation_dashboard).setChecked(true)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
     }
 
     private fun switchFragment(fragment: Fragment) {
