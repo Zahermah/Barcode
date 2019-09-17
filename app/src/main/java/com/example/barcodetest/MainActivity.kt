@@ -15,12 +15,15 @@ import android.widget.Toast
 import com.example.barcodetest.view.CameraScannerFragment
 import com.example.barcodetest.view.ItemsViewFragment
 import com.example.barcodetest.view.LoginActivity
-import com.example.barcodetest.view.showfirebasetest
+import com.example.barcodetest.view.ShowFirebaseList
 import com.google.firebase.FirebaseApp
 
 
 class MainActivity : AppCompatActivity() {
 
+    private val STRING_FRAGMENT_ONE = "fragment_one"
+    private val STRING_FRAGMENT_TWO = "fragment_two"
+    private val STRING_FRAGMENT_THREE = "fragment_three"
     private var fragment: Fragment? = null
     private val REQUEST_CAMERA_Permission = arrayOf(Manifest.permission.CAMERA)
     private val REQUEST_CODE = 10
@@ -31,15 +34,18 @@ class MainActivity : AppCompatActivity() {
 
             when (item.itemId) {
                 R.id.navigation_dashboard -> {
+                    fragment = supportFragmentManager.findFragmentByTag(STRING_FRAGMENT_ONE)
                     switchFragment(CameraScannerFragment())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_home -> {
+                    fragment = supportFragmentManager.findFragmentByTag(STRING_FRAGMENT_TWO)
                     switchFragment(ItemsViewFragment())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_firebase -> {
-                    switchFragment(showfirebasetest())
+                    fragment = supportFragmentManager.findFragmentByTag(STRING_FRAGMENT_THREE)
+                    switchFragment(ShowFirebaseList())
                     return@OnNavigationItemSelectedListener true
                 }
             }
@@ -59,9 +65,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
     private fun switchFragment(fragment: Fragment) {
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        onPause()
         fragmentTransaction.replace(R.id.fragment_holder, fragment)
+        onResume()
         fragmentTransaction.commit()
     }
 

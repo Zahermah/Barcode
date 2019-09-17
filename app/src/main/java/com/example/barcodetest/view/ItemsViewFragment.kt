@@ -27,7 +27,7 @@ import retrofit2.*
 
 
 class ItemsViewFragment : Fragment() {
-    private var TAG = "ItemViewFragment"
+    private val TAG = ItemsViewFragment::class.qualifiedName
     lateinit var listOfArray: ArrayList<String?>
     lateinit var listOfItems: ArrayList<Items>
     lateinit var recyclerView: RecyclerView
@@ -40,7 +40,6 @@ class ItemsViewFragment : Fragment() {
     ): View {
         val rootView = inflater.inflate(R.layout.items_list_fragment, container, false)
         recyclerView = rootView.findViewById(R.id.recycler_view)
-
         fetchDataFromFirebase()
         return rootView
     }
@@ -75,12 +74,12 @@ class ItemsViewFragment : Fragment() {
                 delay(2500)
                 call.enqueue(object : Callback<ItemsList> {
                     override fun onFailure(call: Call<ItemsList>, t: Throwable) {
-                       Toast.makeText(activity?.applicationContext, "Could not fetch data", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "Could not fetch data", Toast.LENGTH_LONG).show()
                     }
 
                     override fun onResponse(call: Call<ItemsList>, response: Response<ItemsList>) {
                         Log.i(TAG, response.body().toString())
-                        Toast.makeText(activity?.applicationContext, response.toString(), Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show()
                         response.body()?.getitemsArrayList()?.let { generateItemsList(it) }
 
 
@@ -93,7 +92,7 @@ class ItemsViewFragment : Fragment() {
 
     fun generateItemsList(getitemsArrayList: ArrayList<Items>) {
         recyclerView?.apply {
-            layoutManager = LinearLayoutManager(activity?.applicationContext, LinearLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
             adapter = ItemsAdapter(addItems(getitemsArrayList))
             recyclerView.setHasFixedSize(true)
@@ -109,12 +108,19 @@ class ItemsViewFragment : Fragment() {
         return listOfItems
     }
 
-    /*
-    fun removeItem(pos: Int) {
-        notifyItemRemoved(pos)
-        notifyItemRangeChanged(pos, itemsList.size)
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
     }
-*/
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
 }
 
 

@@ -1,15 +1,11 @@
 package com.example.barcodetest.view
 
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.barcodetest.testForFirebase.FirebaseEanCode
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -17,13 +13,21 @@ import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 
-const val PERMISSION_REQUEST_CAMERA = 1
 
 
 class CameraScannerFragment : Fragment(), ZXingScannerView.ResultHandler {
 
     private var zxingScannerView: ZXingScannerView? = null
-    private var TAG = "CameraScannerFragment"
+    private val TAG = CameraScannerFragment::class.qualifiedName
+
+
+    companion object {
+
+        fun newInstance(){
+
+        }
+    }
+
 
     var firebaseAuth = FirebaseAuth.getInstance()
 

@@ -13,8 +13,6 @@ u
 Eapp/src/main/java/com/example/barcodetest/network/RetrofitInstance.kt,e\a\ea72b5cf5b757c6d3c0560b613b3479b2b891bb0
 w
 Gapp/src/main/java/com/example/barcodetest/ViewHolder/ItemsViewHolder.kt,5\1\5172d138693dc5f1bde6c246c0e27112fcc200ce
-r
-Bapp/src/main/java/com/example/barcodetest/view/showfirebasetest.kt,3\d\3d6a8f7fb88ae18aac2fa86e26800b0ad808aed0
 n
 >app/src/main/java/com/example/barcodetest/view/ItemsAdapter.kt,7\f\7ffa9706e3af81fb58ac072725705f216eb80424
 s
