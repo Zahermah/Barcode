@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.barcodetest.R
 import com.example.barcodetest.model.Items
@@ -31,6 +32,7 @@ class ItemsViewFragment : Fragment() {
     lateinit var listOfArray: ArrayList<String?>
     lateinit var listOfItems: ArrayList<Items>
     lateinit var recyclerView: RecyclerView
+    lateinit var progressBar: ProgressBar
     lateinit var itemAdapter: ItemsAdapter
 
     override fun onCreateView(
@@ -38,8 +40,11 @@ class ItemsViewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val rootView = inflater.inflate(R.layout.items_list_fragment, container, false)
         recyclerView = rootView.findViewById(R.id.recycler_view)
+        progressBar = rootView.findViewById(R.id.progress_bar)
+        progressBar.visibility
         fetchDataFromFirebase()
         return rootView
     }
@@ -79,7 +84,8 @@ class ItemsViewFragment : Fragment() {
 
                     override fun onResponse(call: Call<ItemsList>, response: Response<ItemsList>) {
                         Log.i(TAG, response.body().toString())
-//                        Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show()
+                        progressBar.visibility = View.GONE
+                      //  Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show()
                         response.body()?.getitemsArrayList()?.let { generateItemsList(it) }
 
 
@@ -108,18 +114,15 @@ class ItemsViewFragment : Fragment() {
         return listOfItems
     }
 
+    fun removeItems(){}
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-    }
+
 
     override fun onPause() {
         super.onPause()
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
+
 
 }
 

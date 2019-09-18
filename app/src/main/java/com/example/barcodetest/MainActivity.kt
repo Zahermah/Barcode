@@ -75,9 +75,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun switchFragment(fragment: Fragment) {
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        onPause()
         fragmentTransaction.replace(R.id.fragment_holder, fragment)
-        onResume()
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 

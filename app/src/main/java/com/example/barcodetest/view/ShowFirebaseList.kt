@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.barcodetest.R
 import com.example.barcodetest.testForFirebase.FirebaseEanCode
@@ -31,8 +32,17 @@ class ShowFirebaseList : Fragment() {
         val rootview = inflater.inflate(R.layout.testforfirebase, container, false)
         listView = rootview.findViewById(R.id.FirebaseListView)
         mutableList = mutableListOf()
-        readFromFirebase()
         return rootview
+    }
+
+    override fun onResume() {
+        super.onResume()
+        readFromFirebase()
+    }
+
+    fun showProgressBar() {
+
+
     }
 
 
@@ -42,7 +52,7 @@ class ShowFirebaseList : Fragment() {
             override fun onCancelled(databaseError: DatabaseError) {
                 Toast.makeText(activity, "Could not fetch from Firebasre", Toast.LENGTH_SHORT)
                     .show()
-                Log.i(TAG,"Cant connect to Firebase")
+                Log.i(TAG, "Cant connect to Firebase")
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
