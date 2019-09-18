@@ -54,8 +54,8 @@ class LoginActivity : AppCompatActivity() {
 
 
     fun signUpUser() {
-        var userEmail = user_email.text.toString().trim()
-        var userPassword = user_password.text.toString().trim()
+        val userEmail = user_email.text.toString().trim()
+        val userPassword = user_password.text.toString().trim()
 
 
         if (TextUtils.isEmpty(userEmail)) {

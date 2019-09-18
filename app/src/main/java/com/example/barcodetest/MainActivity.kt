@@ -12,11 +12,13 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import com.example.barcodetest.view.CameraScannerFragment
-import com.example.barcodetest.view.ItemsViewFragment
-import com.example.barcodetest.view.LoginActivity
-import com.example.barcodetest.view.ShowFirebaseList
+import com.example.barcodetest.view.*
 import com.google.firebase.FirebaseApp
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt
+import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptBackground
+import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground
+import uk.co.samuelwall.materialtaptargetprompt.extras.focals.CirclePromptFocal
+import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,15 +64,6 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.menu.findItem(R.id.navigation_dashboard).setChecked(true)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onPause() {
-        super.onPause()
     }
 
     private fun switchFragment(fragment: Fragment) {
@@ -114,6 +107,5 @@ class MainActivity : AppCompatActivity() {
     private fun allPermissionsGranted() = REQUEST_CAMERA_Permission.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
-
 
 }

@@ -3,5 +3,5 @@
     <item
             android:id="@+id/Login_User"
             android:icon="@drawable/ic_account"
-            android:title="@string/title_login"/>
+            android:title="@string/title_login" />
 </menu>

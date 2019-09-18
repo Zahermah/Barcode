@@ -14,6 +14,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
+                android:name=".view.Main2Activity"
+                android:label="@string/title_activity_main2"
+                android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
                 android:name=".WelcomeSplash"
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"
@@ -29,6 +33,9 @@
                 android:screenOrientation="portrait" />
         <activity
                 android:name=".MainActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".view.CameraxActivity"
                 android:screenOrientation="portrait" />
     </application>
 
