@@ -1,15 +1,14 @@
 package com.example.barcodetest.view
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.barcodetest.R
 import com.example.barcodetest.model.Items
 import com.example.barcodetest.model.ItemsList
@@ -32,8 +31,7 @@ class ItemsViewFragment : Fragment() {
     lateinit var listOfArray: ArrayList<String?>
     lateinit var listOfItems: ArrayList<Items>
     lateinit var recyclerView: RecyclerView
-    lateinit var progressBar: ProgressBar
-    lateinit var itemAdapter: ItemsAdapter
+    lateinit var rootView: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,13 +39,13 @@ class ItemsViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val rootView = inflater.inflate(R.layout.items_list_fragment, container, false)
+        rootView = inflater.inflate(R.layout.items_list_fragment, container, false)
         recyclerView = rootView.findViewById(R.id.recycler_view)
         fetchDataFromFirebase()
         return rootView
     }
 
-    fun fetchDataFromFirebase() {
+    private fun fetchDataFromFirebase() {
         val databaseReference = FirebaseDatabase.getInstance().getReference("EAN")
         listOfArray = arrayListOf()
         listOfItems = arrayListOf()
@@ -82,16 +80,15 @@ class ItemsViewFragment : Fragment() {
 
                     override fun onResponse(call: Call<ItemsList>, response: Response<ItemsList>) {
                         Log.i(TAG, response.body().toString())
-                        //  Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show()
+                        if (context != null) {
+                            Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show()
+                        }
                         response.body()?.getitemsArrayList()?.let { generateItemsList(it) }
-
-
                     }
                 })
             }
         }
     }
-
 
     fun generateItemsList(getitemsArrayList: ArrayList<Items>) {
         recyclerView?.apply {
@@ -110,9 +107,6 @@ class ItemsViewFragment : Fragment() {
         recyclerView.adapter?.notifyDataSetChanged()
         return listOfItems
     }
-
-    fun removeItems() {}
-
 
     override fun onPause() {
         super.onPause()

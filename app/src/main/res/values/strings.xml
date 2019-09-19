@@ -11,6 +11,7 @@
     <string name="title_firebase">Firebase list</string>
     <string name="title_loadingBar">Lodaring list...</string>
     <string name="title_Camerax">Camerax</string>
+    <string name="title_remove_item">Remove Item</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main2">Main2Activity</string>

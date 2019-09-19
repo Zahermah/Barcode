@@ -2,9 +2,9 @@ package com.example.barcodetest.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.barcodetest.MainActivity
 import com.example.barcodetest.R
 import com.google.android.gms.tasks.OnCompleteListener

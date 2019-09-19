@@ -1,8 +1,9 @@
 package com.example.barcodetest.view
 
-import android.support.v7.widget.RecyclerView
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.barcodetest.R
 import com.example.barcodetest.ViewHolder.ItemsViewHolder
 import com.example.barcodetest.model.Items

@@ -2,20 +2,17 @@ package com.example.barcodetest.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import android.widget.ProgressBar
 import android.widget.Toast
-import com.example.barcodetest.MainActivity
+import androidx.fragment.app.Fragment
 import com.example.barcodetest.R
 import com.example.barcodetest.testForFirebase.FirebaseEanCode
 import com.example.barcodetest.testForFirebase.firebaseEanAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

@@ -6,7 +6,7 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             card_view:cardBackgroundColor="#d1d1d1"
@@ -23,23 +23,34 @@
 
             <TextView
                     android:id="@+id/Item_brand"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textStyle="bold" />
 
             <TextView
                     android:id="@+id/Item_title"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textStyle="italic" />
 
             <TextView
                     android:id="@+id/Item_description"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="" />
+
+            <ImageView
+                    android:id="@+id/remove_item_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:contentDescription="@string/title_remove_item"
+                    android:nextFocusRight="@string/title_remove_item"
+                    android:src="@drawable/ic_remove_item"
+
+                    />
 
 
             <!--
@@ -57,7 +68,7 @@
     -->
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>
