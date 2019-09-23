@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.example.barcodetest">
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,10 +13,6 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity
-                android:name=".view.Main2Activity"
-                android:label="@string/title_activity_main2"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
                 android:name=".WelcomeSplash"
                 android:configChanges="orientation|keyboardHidden|screenSize"
@@ -33,9 +29,6 @@
                 android:screenOrientation="portrait" />
         <activity
                 android:name=".MainActivity"
-                android:screenOrientation="portrait" />
-        <activity
-                android:name=".view.CameraxActivity"
                 android:screenOrientation="portrait" />
     </application>
 

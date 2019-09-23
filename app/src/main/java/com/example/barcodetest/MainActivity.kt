@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_dashboard -> {
                     fragment = supportFragmentManager.findFragmentByTag(STRING_FRAGMENT_ONE)
+                    requestPermissions(REQUEST_CAMERA_Permission, REQUEST_CODE)
                     switchFragment(CameraScannerFragment())
                     return@OnNavigationItemSelectedListener true
                 }
@@ -90,11 +91,12 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE) {
             if (allPermissionsGranted()) {
-                switchFragment(CameraScannerFragment())
+                Toast.makeText(this, "Granted by user", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Permissions not granted by user", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Permissions not granted by user, Closing app", Toast.LENGTH_LONG).show()
+                finish()
             }
-            finish()
+
         }
     }
 

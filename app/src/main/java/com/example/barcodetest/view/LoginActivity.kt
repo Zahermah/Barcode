@@ -47,11 +47,15 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     finish()
                     startActivity(Intent(applicationContext, MainActivity::class.java))
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Wrong password or email",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             })
-
     }
-
 
     fun signUpUser() {
         val userEmail = user_email.text.toString().trim()
@@ -68,13 +72,15 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(this) { task ->
-            if (task.isSuccessful) {
-                Toast.makeText(this, "Sucessfully User created", Toast.LENGTH_SHORT).show()
-                finish()
-                startActivity(Intent(applicationContext, MainActivity::class.java))
+        firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Sucessfully User created", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Account Already exists in Database", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
-        }
 
 
         fun authicateUser() {

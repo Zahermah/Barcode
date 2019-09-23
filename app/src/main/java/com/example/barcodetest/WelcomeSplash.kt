@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.animation.BounceInterpolator
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.barcodetest.view.LoginActivity
 
 class WelcomeSplash : AppCompatActivity() {
 
@@ -33,7 +34,7 @@ class WelcomeSplash : AppCompatActivity() {
             override fun onAnimationRepeat(p0: Animator?) {}
 
             override fun onAnimationEnd(p0: Animator?) {
-                startActivity(Intent(applicationContext, MainActivity::class.java))
+                startActivity(Intent(applicationContext, LoginActivity::class.java))
                 finish()
 
             }
