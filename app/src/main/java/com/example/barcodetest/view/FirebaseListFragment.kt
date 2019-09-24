@@ -21,11 +21,11 @@ import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt
 import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptBackground
 import uk.co.samuelwall.materialtaptargetprompt.extras.focals.CirclePromptFocal
 
-class ShowFirebaseList : Fragment() {
+class FirebaseListFragment : Fragment() {
 
     lateinit var mutableList: MutableList<FirebaseEanCode>
     lateinit var listView: ListView
-    private val TAG = ShowFirebaseList::class.qualifiedName
+    private val TAG = FirebaseListFragment::class.qualifiedName
     private lateinit var rootView: View
     lateinit var floatingActionButton: FloatingActionButton
 
@@ -58,7 +58,7 @@ class ShowFirebaseList : Fragment() {
     }
 
     private fun promptLogIn() {
-        MaterialTapTargetPrompt.Builder(this@ShowFirebaseList)
+        MaterialTapTargetPrompt.Builder(this@FirebaseListFragment)
             .setTarget(R.id.float_action_button)
             .setPrimaryText("Hey Hey")
             .setSecondaryText("Press here to Log in")

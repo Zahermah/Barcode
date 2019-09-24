@@ -12,13 +12,4 @@ interface getItemApi {
 
     @GET("trial/lookup?")
     fun getItemsData(@Query("upc") eancode: String): Call<ItemsList>
-
-    @GET("trial/lookup?")
-    fun getItemsListData(@Query("upc") array: ArrayList<String?>): Call<ItemsList>
-
-
-    @GET("trial/lookup?")
-    suspend fun getItems(@Query("upc") eancode: String): Deferred<Response<List<ItemsList>>>
-
-
 }

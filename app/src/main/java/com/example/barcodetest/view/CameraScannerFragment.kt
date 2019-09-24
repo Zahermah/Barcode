@@ -28,7 +28,6 @@ class CameraScannerFragment : Fragment(), ZXingScannerView.ResultHandler {
         }
     }
 
-
     var firebaseAuth = FirebaseAuth.getInstance()
 
     private fun addToFirebaseDatabase(eanCode: String?) {

@@ -3,9 +3,24 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#00e676">
+        android:background="@drawable/gradient_background"
+        >
+
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/barcode_slide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BarcodeScanner"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@id/email_layout"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -35,17 +50,15 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:hint="@string/title_password"
-            android:inputType="textPassword"
             android:padding="12dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/user_password"
                 android:layout_width="match_parent"
+                android:inputType="textPassword"
                 android:layout_height="wrap_content" />
 
 
@@ -53,6 +66,7 @@
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/LoginUser_button"
+            style="@style/TextAppearance.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -60,23 +74,21 @@
             android:layout_marginTop="408dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            style="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/MatButton"
             android:background="#00773F"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:text="@string/title_login"
             android:textColor="#FFFFFFFF"
+            android:theme="@style/MatButton"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/SignUp_Button"
+            style="@style/TextAppearance.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/SignInButton"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="480dp"
@@ -84,6 +96,7 @@
             android:layout_marginRight="16dp"
             android:text="@string/title_signup"
             android:textColor="#FFFFFFFF"
+            android:theme="@style/SignInButton"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

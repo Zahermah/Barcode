@@ -32,15 +32,12 @@ class WelcomeSplash : AppCompatActivity() {
 
         valueAnimator.addListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(p0: Animator?) {}
-
             override fun onAnimationEnd(p0: Animator?) {
                 startActivity(Intent(applicationContext, LoginActivity::class.java))
                 finish()
 
             }
-
             override fun onAnimationCancel(p0: Animator?) {}
-
             override fun onAnimationStart(p0: Animator?) {}
 
         })

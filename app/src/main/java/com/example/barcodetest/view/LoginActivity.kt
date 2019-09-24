@@ -1,13 +1,19 @@
 package com.example.barcodetest.view
 
+import android.animation.Animator
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.animation.AnimationUtils
+import android.view.animation.BounceInterpolator
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.barcodetest.MainActivity
 import com.example.barcodetest.R
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.login_activity.*
@@ -26,6 +32,34 @@ class LoginActivity : AppCompatActivity() {
         SignUp_Button.setOnClickListener {
             signUpUser()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showAnimation()
+    }
+
+    fun showAnimation() {
+        val spalshTextView: TextView = findViewById(R.id.barcode_slide)
+        val valueAnimator = ValueAnimator.ofFloat(0f, 1f)
+
+        valueAnimator.addUpdateListener {
+            val value = it.animatedValue as Float
+            spalshTextView.scaleX = value
+            spalshTextView.scaleY = value
+        }
+        valueAnimator.interpolator = BounceInterpolator()
+        valueAnimator.duration = 1000
+
+        valueAnimator.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(p0: Animator?) {}
+            override fun onAnimationEnd(p0: Animator?) {}
+            override fun onAnimationCancel(p0: Animator?) {}
+            override fun onAnimationStart(p0: Animator?) {}
+
+        })
+
+        valueAnimator.start()
     }
 
     fun loginUser() {

@@ -16,10 +16,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
-
-    private val STRING_FRAGMENT_ONE = "fragment_one"
-    private val STRING_FRAGMENT_TWO = "fragment_two"
-    private val STRING_FRAGMENT_THREE = "fragment_three"
     private var fragment: Fragment? = null
     private val REQUEST_CAMERA_Permission = arrayOf(Manifest.permission.CAMERA)
     private val REQUEST_CODE = 10
@@ -30,19 +26,16 @@ class MainActivity : AppCompatActivity() {
 
             when (item.itemId) {
                 R.id.navigation_dashboard -> {
-                    fragment = supportFragmentManager.findFragmentByTag(STRING_FRAGMENT_ONE)
                     requestPermissions(REQUEST_CAMERA_Permission, REQUEST_CODE)
                     switchFragment(CameraScannerFragment())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_home -> {
-                    fragment = supportFragmentManager.findFragmentByTag(STRING_FRAGMENT_TWO)
                     switchFragment(ItemsViewFragment())
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.navigation_firebase -> {
-                    fragment = supportFragmentManager.findFragmentByTag(STRING_FRAGMENT_THREE)
-                    switchFragment(ShowFirebaseList())
+                    switchFragment(FirebaseListFragment())
                     return@OnNavigationItemSelectedListener true
                 }
             }
