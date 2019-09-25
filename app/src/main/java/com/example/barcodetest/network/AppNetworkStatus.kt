@@ -9,7 +9,7 @@ import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.Socket
 
-internal class AppStatus(private val onInternetChecked: (Boolean) -> Unit) :
+internal class AppNetworkStatus(private val onInternetChecked: (Boolean) -> Unit) :
 
     AsyncTask<Void, Void, Boolean>() {
     init {
