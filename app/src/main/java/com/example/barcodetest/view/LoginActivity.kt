@@ -5,6 +5,7 @@ import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.animation.AnimationUtils
 import android.view.animation.BounceInterpolator
 import android.widget.TextView
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.barcodetest.MainActivity
 import com.example.barcodetest.R
+import com.example.barcodetest.network.AppStatus
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.textview.MaterialTextView
 import com.google.firebase.auth.AuthResult
@@ -22,6 +24,7 @@ import kotlinx.android.synthetic.main.login_activity.*
 class LoginActivity : AppCompatActivity() {
 
     var firebaseAuth = FirebaseAuth.getInstance()
+    private val TAG = LoginActivity::class.qualifiedName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +37,20 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    fun checkNetworkStatus() {
+        AppStatus { internet ->
+            Toast.makeText(
+                this,
+                "Is connection enabled? " + internet,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+    }
     override fun onResume() {
         super.onResume()
         showAnimation()
+        checkNetworkStatus()
     }
 
     fun showAnimation() {
@@ -77,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
             return
         }
         firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword)
-            .addOnCompleteListener(this, OnCompleteListener<AuthResult> { task ->
+            .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     finish()
                     startActivity(Intent(applicationContext, MainActivity::class.java))
@@ -88,7 +102,7 @@ class LoginActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            })
+            }
     }
 
     fun signUpUser() {

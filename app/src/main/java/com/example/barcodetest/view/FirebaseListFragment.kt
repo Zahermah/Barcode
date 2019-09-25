@@ -46,9 +46,10 @@ class FirebaseListFragment : Fragment() {
         super.onResume()
         promptLogIn()
         readFromFirebase()
-        Login()
+        //Login()
     }
 
+    /*
 
     fun Login() {
         floatingActionButton.setOnClickListener({
@@ -56,7 +57,7 @@ class FirebaseListFragment : Fragment() {
 
         })
     }
-
+*/
     private fun promptLogIn() {
         MaterialTapTargetPrompt.Builder(this@FirebaseListFragment)
             .setTarget(R.id.float_action_button)
