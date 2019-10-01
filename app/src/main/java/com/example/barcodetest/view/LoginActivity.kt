@@ -17,8 +17,6 @@ import java.util.concurrent.Executors
 
 open class LoginActivity : AppCompatActivity() {
 
-    val fingerPrint = FingerPrint()
-
     private val TAG = LoginActivity::class.qualifiedName
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +32,6 @@ open class LoginActivity : AppCompatActivity() {
 
         Finger_Print.setOnClickListener {
             biometricPrompt.authenticate(promptInfo)
-            //Toast.makeText(this, "Fingerprint", Toast.LENGTH_SHORT).show()
         }
 
     }
