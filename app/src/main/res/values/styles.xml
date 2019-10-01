@@ -5,10 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="colorAccent">@color/color_purple_500</item>
     </style>
-
 
     <style name="MatButton" parent="Theme.MaterialComponents">
         <item name="colorOnPrimary">@android:color/holo_red_light</item>
@@ -22,6 +20,12 @@
         <item name="colorOnSurface">@android:color/holo_blue_bright</item>
     </style>
 
+    <style name="FingerPrint" parent="Theme.MaterialComponents">
+        <item name="colorOnPrimary">@android:color/holo_green_dark</item>
+        <item name="colorPrimary">@android:color/holo_purple</item>
+        <item name="colorOnSurface">@android:color/holo_blue_dark</item>
+    </style>
+
     <style name="BottomNavigationView" parent="Theme.MaterialComponents.BottomSheetDialog">
         <item name="enforceTextAppearance">true</item>
         <item name="enforceMaterialTheme">true</item>
@@ -29,8 +33,7 @@
         <item name="itemTextAppearanceActive">?attr/textAppearanceCaption</item>
     </style>
 
-
-    <style name="AppTheme.Laucher" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppTheme.Launcher" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/spalsh</item>
         <item name="android:windowFullscreen">true</item>
         <item name="windowNoTitle">true</item>
@@ -40,6 +43,7 @@
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="windowNoTitle">true</item>
     </style>
 

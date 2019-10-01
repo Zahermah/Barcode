@@ -8,12 +8,14 @@ import android.view.animation.BounceInterpolator
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.barcodetest.view.LoginActivity
+import com.google.firebase.FirebaseApp
 
 class WelcomeSplash : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_activity)
+        FirebaseApp.initializeApp(this)
         showAnimation()
     }
 

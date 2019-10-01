@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.example.barcodetest.R
-import com.example.barcodetest.view.ItemsViewFragment
 
 class firebaseEanAdapter(
     val Adaptercontext: Context,

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.barcodetest.R
+import com.example.barcodetest.Koin.UserPresenter
 import com.example.barcodetest.model.Items
 import com.example.barcodetest.model.ItemsList
 import com.example.barcodetest.network.getItemApi
@@ -23,6 +24,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import retrofit2.*
 
 
@@ -33,14 +35,12 @@ class ItemsViewFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
     lateinit var rootView: View
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    val userGreeeting: UserPresenter by inject()
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         rootView = inflater.inflate(R.layout.items_list_fragment, container, false)
         recyclerView = rootView.findViewById(R.id.recycler_view)
+        userGreeeting.messageUser(rootView)
         fetchDataFromFirebase()
         return rootView
     }

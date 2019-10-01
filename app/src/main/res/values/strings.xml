@@ -7,6 +7,7 @@
     <string name="title_login">Login</string>
     <string name="title_email">Email</string>
     <string name="title_password">Password</string>
+    <string name="finger_print">Use FingerPrint</string>
     <string name="title_signup">Sign up</string>
     <string name="title_firebase">Firebase list</string>
     <string name="title_loadingBar">Lodaring list...</string>

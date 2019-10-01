@@ -1,35 +1,44 @@
 package com.example.barcodetest.view
 
-import android.animation.Animator
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.animation.BounceInterpolator
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricPrompt
+import com.example.barcodetest.FingerPrint.FingerPrint
 import com.example.barcodetest.MainActivity
 import com.example.barcodetest.R
+import com.example.barcodetest.animation.showTextAnimation
 import com.example.barcodetest.network.AppNetworkStatus
+import com.example.barcodetest.presenter.LoginAuthticate
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.login_activity.*
+import java.util.concurrent.Executors
 
 
-class LoginActivity : AppCompatActivity() {
+open class LoginActivity : AppCompatActivity() {
 
-    var firebaseAuth = FirebaseAuth.getInstance()
+    val fingerPrint = FingerPrint()
+
     private val TAG = LoginActivity::class.qualifiedName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
+
         LoginUser_button.setOnClickListener {
-            loginUser()
+            LoginAuthticate().loginUser(this)
         }
         SignUp_Button.setOnClickListener {
-            signUpUser()
+            LoginAuthticate().signUpUser(this)
         }
+
+        Finger_Print.setOnClickListener {
+            biometricPrompt.authenticate(promptInfo)
+            //Toast.makeText(this, "Fingerprint", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     fun checkNetworkStatus() {
@@ -42,97 +51,45 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
+
     override fun onResume() {
         super.onResume()
-        showAnimation()
+        showTextAnimation().showAnimation(this)
         checkNetworkStatus()
     }
 
-    fun showAnimation() {
-        val spalshTextView: TextView = findViewById(R.id.barcode_slide)
-        val valueAnimator = ValueAnimator.ofFloat(0f, 1f)
+    val executor = Executors.newSingleThreadExecutor()
+    val biometricPrompt =
+        BiometricPrompt(this, executor, object : BiometricPrompt.AuthenticationCallback() {
 
-        valueAnimator.addUpdateListener {
-            val value = it.animatedValue as Float
-            spalshTextView.scaleX = value
-            spalshTextView.scaleY = value
-        }
-        valueAnimator.interpolator = BounceInterpolator()
-        valueAnimator.duration = 1000
+            override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                super.onAuthenticationError(errorCode, errString)
+                if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
+                    finish()
+                } else {
+                    TODO("Called when an unrecoverable error has been encountered and the operation is complete.")
+                }
+            }
 
-        valueAnimator.addListener(object : Animator.AnimatorListener {
-            override fun onAnimationRepeat(p0: Animator?) {}
-            override fun onAnimationEnd(p0: Animator?) {}
-            override fun onAnimationCancel(p0: Animator?) {}
-            override fun onAnimationStart(p0: Animator?) {}
+            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                super.onAuthenticationSucceeded(result)
+                startActivity(Intent(applicationContext, MainActivity::class.java))
+            }
 
+            override fun onAuthenticationFailed() {
+                super.onAuthenticationFailed()
+                Toast.makeText(
+                    applicationContext,
+                    "Remove dirt from the sensor",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         })
 
-        valueAnimator.start()
-    }
 
-    fun loginUser() {
-        var userEmail = user_email.text.toString().trim()
-        var userPassword = user_password.text.toString().trim()
+    val promptInfo = BiometricPrompt.PromptInfo.Builder()
+        .setTitle("Login to the BarcodeScanner")
+        .setNegativeButtonText("Cancel")
+        .build()
 
-
-        if (TextUtils.isEmpty(userEmail)) {
-            Toast.makeText(this, "Please enter your'e email", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (TextUtils.isEmpty(userPassword)) {
-            Toast.makeText(this, "Please enter your'e password", Toast.LENGTH_SHORT).show()
-            return
-        }
-        firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    finish()
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
-                } else {
-                    Toast.makeText(
-                        applicationContext,
-                        "Wrong password or email",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-    }
-
-    fun signUpUser() {
-        val userEmail = user_email.text.toString().trim()
-        val userPassword = user_password.text.toString().trim()
-
-
-        if (TextUtils.isEmpty(userEmail)) {
-            Toast.makeText(this, "Please enter your'e email", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (TextUtils.isEmpty(userPassword)) {
-            Toast.makeText(this, "Please enter your'e password", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(this, "Sucessfully User created", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Account Already exists in Database", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-
-
-        fun authicateUser() {
-            if (firebaseAuth.currentUser != null) {
-                finish()
-                startActivity(Intent(applicationContext, MainActivity::class.java))
-
-            }
-        }
-
-    }
 }

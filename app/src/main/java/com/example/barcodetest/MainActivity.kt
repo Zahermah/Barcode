@@ -11,9 +11,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.example.barcodetest.Koin.appModule
 import com.example.barcodetest.view.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.FirebaseApp
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 class MainActivity : AppCompatActivity() {
     private var fragment: Fragment? = null
@@ -48,9 +51,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        FirebaseApp.initializeApp(this)
+        //FirebaseApp.initializeApp(this)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.menu.findItem(R.id.navigation_dashboard).setChecked(true)
+
+        startKoin {
+            androidContext(this@MainActivity)
+            androidLogger()
+            modules(appModule)
+        }
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 

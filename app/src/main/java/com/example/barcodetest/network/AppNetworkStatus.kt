@@ -1,10 +1,6 @@
 package com.example.barcodetest.network
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
 import android.os.AsyncTask
-import android.os.AsyncTask.execute
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.Socket
