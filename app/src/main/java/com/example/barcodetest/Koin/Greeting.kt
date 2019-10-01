@@ -1,8 +1,8 @@
 package com.example.barcodetest.Koin
 
-import com.example.barcodetest.Koin.UserGreeeting
 
-class Greeting: UserGreeeting {
+
+class Greeting: UserGreeting {
     override fun sayGreeting(): String ="Hello im the Redmi greet token from Koin"
 
 

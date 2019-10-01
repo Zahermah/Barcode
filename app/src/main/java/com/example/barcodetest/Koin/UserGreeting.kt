@@ -1,6 +1,6 @@
 package com.example.barcodetest.Koin
 
-interface UserGreeeting {
+interface UserGreeting {
 
     fun sayGreeting(): String
 }

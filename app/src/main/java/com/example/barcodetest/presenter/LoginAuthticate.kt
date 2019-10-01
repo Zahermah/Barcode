@@ -1,7 +1,6 @@
 package com.example.barcodetest.presenter
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.text.TextUtils
 import android.widget.Toast
@@ -9,9 +8,6 @@ import com.example.barcodetest.MainActivity
 import com.example.barcodetest.view.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.login_activity.*
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
 
 
 class LoginAuthticate : Activity() {

@@ -2,7 +2,6 @@ package com.example.barcodetest.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
@@ -12,7 +11,6 @@ import com.example.barcodetest.R
 import com.example.barcodetest.animation.showTextAnimation
 import com.example.barcodetest.network.AppNetworkStatus
 import com.example.barcodetest.presenter.LoginAuthticate
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.login_activity.*
 import java.util.concurrent.Executors
 
