@@ -65,7 +65,7 @@ open class LoginActivity : AppCompatActivity() {
                 if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
                     finish()
                 } else {
-                    TODO("Called when an unrecoverable error has been encountered and the operation is complete.")
+                    finish()
                 }
             }
 
