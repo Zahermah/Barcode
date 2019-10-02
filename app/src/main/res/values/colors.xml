@@ -5,6 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="color_Orange">#FFA500</color>
+    <color name="color_login_status">#00e676</color>
     <color name="color_BlueGrey_600">#546e7a</color>
     <color name="color_purple_500">#ab47bc</color>
 </resources>

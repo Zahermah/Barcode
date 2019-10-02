@@ -38,12 +38,12 @@
         <item name="android:windowFullscreen">true</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@color/color_login_status</item>
+        <item name="android:windowFullscreen">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
