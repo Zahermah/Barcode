@@ -11,6 +11,7 @@
             android:id="@+id/barcode_slide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/fingerpaint_regular"
             android:text="BarcodeScanner"
             android:textAlignment="center"
             android:textSize="30sp"

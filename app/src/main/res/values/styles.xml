@@ -34,7 +34,7 @@
     </style>
 
     <style name="AppTheme.Launcher" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/spalsh</item>
+        <item name="android:windowBackground">@drawable/colorbackground</item>
         <item name="android:windowFullscreen">true</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
