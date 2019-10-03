@@ -9,10 +9,7 @@ class EanModel {
     fun getEanCodeFromDatabase() {
         databaseReference = FirebaseDatabase.getInstance().getReference("EAN")
         databaseReference.addValueEventListener(object : ValueEventListener {
-
-            override fun onCancelled(databaseError: DatabaseError) {
-            }
-
+            override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val mutableList: MutableList<EanNumbers>
                 for (dataSnapShot in dataSnapshot.children) {
@@ -21,5 +18,4 @@ class EanModel {
             }
         })
     }
-
 }

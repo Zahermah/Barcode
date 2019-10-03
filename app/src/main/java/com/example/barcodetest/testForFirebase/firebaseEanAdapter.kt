@@ -15,7 +15,6 @@ class firebaseEanAdapter(
 ) :
     ArrayAdapter<FirebaseEanCode>(Adaptercontext, layoutresId, firebaseEanCode) {
 
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val layoutInflater: LayoutInflater = LayoutInflater.from(Adaptercontext)
         val view: View = layoutInflater.inflate(layoutresId, null)

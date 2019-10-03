@@ -10,6 +10,5 @@ class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.Item_brand.text = item.brand
         itemView.Item_title.text = item.title
         itemView.Item_description.text = item.description
-
     }
 }

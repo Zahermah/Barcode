@@ -9,5 +9,4 @@ class EanList {
     fun getEANArrayList(): ArrayList<EanNumbers>? {
         return eanList
     }
-
 }

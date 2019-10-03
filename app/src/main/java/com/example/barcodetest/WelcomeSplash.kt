@@ -39,6 +39,7 @@ class WelcomeSplash : AppCompatActivity() {
                 finish()
 
             }
+
             override fun onAnimationCancel(p0: Animator?) {}
             override fun onAnimationStart(p0: Animator?) {}
 

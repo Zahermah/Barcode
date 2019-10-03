@@ -81,7 +81,6 @@ open class LoginActivity : AppCompatActivity() {
             }
         })
 
-
     val promptInfo = BiometricPrompt.PromptInfo.Builder()
         .setTitle("Login to the BarcodeScanner")
         .setNegativeButtonText("Cancel")

@@ -4,7 +4,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 const val BASE_URL = "https://api.upcitemdb.com/prod/"
-
 class RetrofitInstance {
 
     fun getRetrofitInstance(): Retrofit {
@@ -15,6 +14,4 @@ class RetrofitInstance {
                 .build()
         return retrofit
     }
-
-
 }

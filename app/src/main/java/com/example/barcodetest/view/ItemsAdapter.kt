@@ -12,7 +12,6 @@ import com.example.barcodetest.model.Items
 class ItemsAdapter(private var itemsList: ArrayList<Items>) :
     RecyclerView.Adapter<ItemsViewHolder>() {
 
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemsViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.card_view_fragment, viewGroup, false)
@@ -30,8 +29,4 @@ class ItemsAdapter(private var itemsList: ArrayList<Items>) :
         notifyItemRemoved(pos)
         notifyItemRangeChanged(pos, itemsList.size)
     }
-
-
-
 }
-

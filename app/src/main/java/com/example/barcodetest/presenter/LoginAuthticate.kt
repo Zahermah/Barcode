@@ -3,7 +3,6 @@ package com.example.barcodetest.presenter
 import android.app.Activity
 import android.content.Intent
 import android.text.TextUtils
-import android.view.View
 import android.widget.Toast
 import com.example.barcodetest.MainActivity
 import com.example.barcodetest.view.LoginActivity
@@ -14,7 +13,6 @@ import kotlinx.android.synthetic.main.login_activity.*
 class LoginAuthticate : Activity() {
 
     var firebaseAuth = FirebaseAuth.getInstance()
-
 
     fun authicateUser(view: LoginActivity) {
         if (firebaseAuth.currentUser != null) {
@@ -69,7 +67,5 @@ class LoginAuthticate : Activity() {
                         .show()
                 }
             }
-
     }
-
 }

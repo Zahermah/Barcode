@@ -95,7 +95,11 @@ class MainActivity : AppCompatActivity() {
             if (allPermissionsGranted()) {
                 Toast.makeText(this, "Granted by user", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Permissions not granted by user, Closing app", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Permissions not granted by user, Closing app",
+                    Toast.LENGTH_LONG
+                ).show()
                 finish()
             }
 

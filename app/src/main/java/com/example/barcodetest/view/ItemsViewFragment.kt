@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.barcodetest.R
@@ -32,12 +33,17 @@ class ItemsViewFragment : Fragment() {
     private val TAG = ItemsViewFragment::class.qualifiedName
     lateinit var listOfArray: ArrayList<String?>
     lateinit var listOfItems: ArrayList<Items>
+    lateinit var listOfItemsID: ArrayList<String>
     lateinit var recyclerView: RecyclerView
     lateinit var rootView: View
 
     val userGreeeting: UserPresenter by inject()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         rootView = inflater.inflate(R.layout.items_list_fragment, container, false)
         recyclerView = rootView.findViewById(R.id.recycler_view)
         userGreeeting.messageUser(rootView)
@@ -49,7 +55,7 @@ class ItemsViewFragment : Fragment() {
         val databaseReference = FirebaseDatabase.getInstance().getReference("EAN")
         listOfArray = arrayListOf()
         listOfItems = arrayListOf()
-
+        listOfItemsID = arrayListOf()
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(databaseError: DatabaseError) {}
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -57,13 +63,21 @@ class ItemsViewFragment : Fragment() {
                     if (dataSnapshot.exists()) {
                         Log.i(TAG + "EAN", eanCodes.toString())
                         val eanItems = eanCodes.getValue(FirebaseEanCode::class.java)
+                        eanItems?.eanId?.let { listOfItemsID.add(it) }
                         listOfArray.add(eanItems?.eanValue)
                     }
                 }
+
+                removeItemsFromFirebase(listOfItemsID)
                 getEanItems(listOfArray)
             }
 
         })
+    }
+
+    fun removeItemsFromFirebase(itemsID: ArrayList<String>) {
+        // Toast.makeText(context, itemsID[0], Toast.LENGTH_SHORT).show()
+
     }
 
 
@@ -81,7 +95,7 @@ class ItemsViewFragment : Fragment() {
                     override fun onResponse(call: Call<ItemsList>, response: Response<ItemsList>) {
                         Log.i(TAG, response.body().toString())
                         if (context != null) {
-                            Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show()
                         }
                         response.body()?.getitemsArrayList()?.let { generateItemsList(it) }
                     }
@@ -91,15 +105,16 @@ class ItemsViewFragment : Fragment() {
     }
 
     fun generateItemsList(getitemsArrayList: ArrayList<Items>) {
-        recyclerView?.apply {
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
             adapter = ItemsAdapter(addItems(getitemsArrayList))
             recyclerView.setHasFixedSize(true)
+            val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
+            itemTouchHelper.attachToRecyclerView(recyclerView)
 
         }
     }
-
 
     fun addItems(items: ArrayList<Items>): ArrayList<Items> {
         listOfItems.addAll(items)
@@ -113,13 +128,23 @@ class ItemsViewFragment : Fragment() {
     }
 
 
+    val itemTouchCallback =
+        object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                viewHolder1: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
+                val position = viewHolder.adapterPosition
+                val databaseReference = FirebaseDatabase.getInstance().getReference("/EAN")
+                databaseReference.child(listOfItemsID[position]).removeValue()
+                listOfItems.removeAt(position)
+                recyclerView.adapter!!.notifyItemRemoved(position)
+            }
+        }
+
 }
-
-
-
-
-
-
-
-
-

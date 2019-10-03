@@ -13,19 +13,14 @@ import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 
-
-
 class CameraScannerFragment : Fragment(), ZXingScannerView.ResultHandler {
 
     private var zxingScannerView: ZXingScannerView? = null
     private val TAG = CameraScannerFragment::class.qualifiedName
 
-
     companion object {
 
-        fun newInstance(){
-
-        }
+        fun newInstance() {}
     }
 
     var firebaseAuth = FirebaseAuth.getInstance()
@@ -55,7 +50,7 @@ class CameraScannerFragment : Fragment(), ZXingScannerView.ResultHandler {
 
     override fun onPause() {
         super.onPause()
-        zxingScannerView?.stopCamera()           // Stop camera on pause
+        zxingScannerView?.stopCamera()
     }
 
     override fun onResume() {
