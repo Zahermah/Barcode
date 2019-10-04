@@ -17,6 +17,7 @@ import com.example.barcodetest.model.ItemsList
 import com.example.barcodetest.network.getItemApi
 import com.example.barcodetest.network.RetrofitInstance
 import com.example.barcodetest.testForFirebase.FirebaseEanCode
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -95,7 +96,7 @@ class ItemsViewFragment : Fragment() {
                     override fun onResponse(call: Call<ItemsList>, response: Response<ItemsList>) {
                         Log.i(TAG, response.body().toString())
                         if (context != null) {
-                            //Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show()
                         }
                         response.body()?.getitemsArrayList()?.let { generateItemsList(it) }
                     }
@@ -144,6 +145,7 @@ class ItemsViewFragment : Fragment() {
                 databaseReference.child(listOfItemsID[position]).removeValue()
                 listOfItems.removeAt(position)
                 recyclerView.adapter!!.notifyItemRemoved(position)
+                Snackbar.make(rootView, "Removed", Snackbar.LENGTH_SHORT).show()
             }
         }
 

@@ -35,7 +35,8 @@
 
     <style name="AppTheme.Launcher" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/colorbackground</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="android:statusBarColor">@color/color_pink_dark_500</item>
+        <item name="android:windowFullscreen">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>

@@ -18,10 +18,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt
 import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptBackground
-import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.FullscreenPromptBackground
-import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.RectanglePromptBackground
 import uk.co.samuelwall.materialtaptargetprompt.extras.focals.CirclePromptFocal
-import uk.co.samuelwall.materialtaptargetprompt.extras.focals.RectanglePromptFocal
 
 class FirebaseListFragment : Fragment() {
 
@@ -59,14 +56,14 @@ class FirebaseListFragment : Fragment() {
         })
     }
 */
-    private fun promptLogIn() {
+    fun promptLogIn() {
         MaterialTapTargetPrompt.Builder(this@FirebaseListFragment)
             .setTarget(rootView.findViewById<View>(R.id.float_action_button))
             .setPrimaryText("Hey Hey")
             .setSecondaryText("Press here to Log in")
             .setBackButtonDismissEnabled(true)
-            .setPromptBackground(FullscreenPromptBackground())
-            .setPromptFocal(RectanglePromptFocal())
+            .setPromptBackground(CirclePromptBackground())
+            .setPromptFocal(CirclePromptFocal())
             .setPromptStateChangeListener { prompt, state ->
                 if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED) {
                     MaterialTapTargetPrompt.STATE_FINISHED
