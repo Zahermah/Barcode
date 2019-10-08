@@ -22,12 +22,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
 import retrofit2.*
+import java.io.IOException
 
 
 class ItemsViewFragment : Fragment() {
@@ -68,19 +66,11 @@ class ItemsViewFragment : Fragment() {
                         listOfArray.add(eanItems?.eanValue)
                     }
                 }
-
-                removeItemsFromFirebase(listOfItemsID)
                 getEanItems(listOfArray)
             }
 
         })
     }
-
-    fun removeItemsFromFirebase(itemsID: ArrayList<String>) {
-        // Toast.makeText(context, itemsID[0], Toast.LENGTH_SHORT).show()
-
-    }
-
 
     fun getEanItems(eanCode: ArrayList<String?>) {
         val service = RetrofitInstance().getRetrofitInstance().create(getItemApi::class.java)
@@ -102,24 +92,23 @@ class ItemsViewFragment : Fragment() {
                     }
                 })
             }
+
         }
+
+        //GlobalScope.cancel()
     }
 
     fun generateItemsList(getitemsArrayList: ArrayList<Items>) {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            setHasFixedSize(true)
-            adapter = ItemsAdapter(addItems(getitemsArrayList))
-            recyclerView.setHasFixedSize(true)
             val itemTouchHelper = ItemTouchHelper(itemTouchCallback)
             itemTouchHelper.attachToRecyclerView(recyclerView)
-
+            adapter = ItemsAdapter(addItems(getitemsArrayList))
         }
     }
 
     fun addItems(items: ArrayList<Items>): ArrayList<Items> {
         listOfItems.addAll(items)
-        recyclerView.setHasFixedSize(true)
         recyclerView.adapter?.notifyDataSetChanged()
         return listOfItems
     }
@@ -143,10 +132,11 @@ class ItemsViewFragment : Fragment() {
                 val position = viewHolder.adapterPosition
                 val databaseReference = FirebaseDatabase.getInstance().getReference("/EAN")
                 databaseReference.child(listOfItemsID[position]).removeValue()
+                Log.i(TAG + "GODA", listOfItemsID[position])
                 listOfItems.removeAt(position)
-                recyclerView.adapter!!.notifyItemRemoved(position)
+                recyclerView.adapter?.notifyItemRemoved(listOfItemsID[position].toInt())
+                recyclerView.adapter?.notifyDataSetChanged()
                 Snackbar.make(rootView, "Removed", Snackbar.LENGTH_SHORT).show()
             }
         }
-
 }

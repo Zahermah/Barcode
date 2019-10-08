@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.barcodetest.Koin.appModule
 import com.example.barcodetest.view.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.FirebaseApp
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -51,9 +52,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //FirebaseApp.initializeApp(this)
+        FirebaseApp.initializeApp(this)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        navView.menu.findItem(R.id.navigation_dashboard).setChecked(true)
+        navView.menu.findItem(R.id.navigation_dashboard).isChecked = true
 
         startKoin {
             androidContext(this@MainActivity)
@@ -66,7 +67,6 @@ class MainActivity : AppCompatActivity() {
     private fun switchFragment(fragment: Fragment) {
         val fragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_holder, fragment)
-        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 
@@ -93,7 +93,6 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE) {
             if (allPermissionsGranted()) {
-                Toast.makeText(this, "Granted by user", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(
                     this,
@@ -102,7 +101,6 @@ class MainActivity : AppCompatActivity() {
                 ).show()
                 finish()
             }
-
         }
     }
 

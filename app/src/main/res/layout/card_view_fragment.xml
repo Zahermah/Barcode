@@ -40,32 +40,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="" />
-
-            <ImageView
-                    android:id="@+id/remove_item_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:contentDescription="@string/title_remove_item"
-                    android:nextFocusRight="@string/title_remove_item"
-                    android:src="@drawable/ic_remove_item"
-
-                    />
-
-
-            <!--
-
-             <ImageView
-                    android:id="@+id/Image_Description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitStart"/>
-                <TextView
-                        android:id="@+id/EAN_Code"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""/>
-    -->
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
