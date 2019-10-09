@@ -84,7 +84,6 @@ class MainActivity : AppCompatActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
     }
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -107,5 +106,4 @@ class MainActivity : AppCompatActivity() {
     private fun allPermissionsGranted() = REQUEST_CAMERA_Permission.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
-
 }

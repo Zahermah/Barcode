@@ -1,6 +1,5 @@
 package com.example.barcodetest.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -11,7 +10,6 @@ import com.example.barcodetest.R
 import com.example.barcodetest.animation.showTextAnimation
 import com.example.barcodetest.network.AppNetworkStatus
 import com.example.barcodetest.presenter.LoginAuthticate
-import com.google.android.material.snackbar.Snackbar
 
 import kotlinx.android.synthetic.main.login_activity.*
 import java.util.concurrent.Executors
@@ -63,11 +61,13 @@ open class LoginActivity : AppCompatActivity() {
                 super.onAuthenticationError(errorCode, errString)
                 if (errorCode == BiometricPrompt.ERROR_NEGATIVE_BUTTON) {
                     //Snackbar.make(R.layout.login_activity,"Error place your finger on the sensor",Snackbar.LENGTH_SHORT)
-                    Toast.makeText(
-                        this@LoginActivity,
-                        "Error place your finger on the sensor",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    if (applicationContext != null) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Error place your finger on the sensor",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
 
             }

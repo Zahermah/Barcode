@@ -25,7 +25,6 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
 import retrofit2.*
-import java.io.IOException
 
 
 class ItemsViewFragment : Fragment() {
@@ -84,18 +83,30 @@ class ItemsViewFragment : Fragment() {
                     }
 
                     override fun onResponse(call: Call<ItemsList>, response: Response<ItemsList>) {
-                        Log.i(TAG, response.body().toString())
-                        if (context != null) {
-                            Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show()
+
+                        if (response.isSuccessful) {
+                            if (context != null) {
+                                Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT)
+                                    .show()
+                            }
+                            response.body()?.getitemsArrayList()?.let { generateItemsList(it) }
+
+                        } else {
+                            if (response.code() == 429) {
+                                if (context != null) {
+                                    Toast.makeText(context, "to many requests", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            }
+
                         }
-                        response.body()?.getitemsArrayList()?.let { generateItemsList(it) }
+                        Log.i(TAG, response.body().toString())
+
+
                     }
                 })
             }
-
         }
-
-        //GlobalScope.cancel()
     }
 
     fun generateItemsList(getitemsArrayList: ArrayList<Items>) {
@@ -113,11 +124,6 @@ class ItemsViewFragment : Fragment() {
         return listOfItems
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
-
     val itemTouchCallback =
         object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(
@@ -134,7 +140,6 @@ class ItemsViewFragment : Fragment() {
                 databaseReference.child(listOfItemsID[position]).removeValue()
                 Log.i(TAG + "GODA", listOfItemsID[position])
                 listOfItems.removeAt(position)
-                recyclerView.adapter?.notifyItemRemoved(listOfItemsID[position].toInt())
                 recyclerView.adapter?.notifyDataSetChanged()
                 Snackbar.make(rootView, "Removed", Snackbar.LENGTH_SHORT).show()
             }
