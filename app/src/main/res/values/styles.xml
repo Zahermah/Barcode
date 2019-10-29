@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/color_purple_500</item>
+        <item name="android:windowAnimationStyle">@style/AppTheme.WindowTransition</item>
     </style>
 
     <style name="MatButton" parent="Theme.MaterialComponents">
@@ -34,8 +35,6 @@
     </style>
 
     <style name="AppTheme.Launcher" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/colorbackground</item>
-        <item name="android:statusBarColor">@color/color_pink_dark_500</item>
         <item name="android:windowFullscreen">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -43,9 +42,14 @@
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="android:statusBarColor">@color/color_login_status</item>
         <item name="android:windowFullscreen">false</item>
+        <item name="android:statusBarColor">@color/color_login_status</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.WindowTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -15,6 +15,7 @@ class ItemsAdapter(private var itemsList: ArrayList<Items>) :
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ItemsViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.card_view_fragment, viewGroup, false)
+
         return ItemsViewHolder(view)
     }
 

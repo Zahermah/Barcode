@@ -10,6 +10,8 @@ import com.example.barcodetest.R
 import com.example.barcodetest.animation.showTextAnimation
 import com.example.barcodetest.network.AppNetworkStatus
 import com.example.barcodetest.presenter.LoginAuthticate
+import com.google.firebase.FirebaseApp
+import com.rbddevs.splashy.Splashy
 
 import kotlinx.android.synthetic.main.login_activity.*
 import java.util.concurrent.Executors
@@ -22,7 +24,9 @@ open class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSplashy()
         setContentView(R.layout.login_activity)
+        FirebaseApp.initializeApp(this)
         showTextAnimation().showAnimation(this)
         checkNetworkStatus()
 
@@ -39,6 +43,20 @@ open class LoginActivity : AppCompatActivity() {
 
     }
 
+    fun setSplashy() {
+        Splashy(this)         // For JAVA : new Splashy(this)
+            .setLogo(R.drawable.barcodereader)
+            .setTitle(R.string.app_name)
+            .setTitleColor(R.color.color_amber_dark_400)
+            .setSubTitle("For your Scanning purpose")
+            .setProgressColor(R.color.white)
+            .setBackgroundResource(R.color.color_teal_dark_700)
+            .setAnimation(Splashy.Animation.SLIDE_LEFT_ENTER)
+            .setFullScreen(true)
+            .setTime(5000)
+            .show()
+    }
+
     fun checkNetworkStatus() {
         AppNetworkStatus { internet ->
             Toast.makeText(
@@ -48,10 +66,6 @@ open class LoginActivity : AppCompatActivity() {
             ).show()
         }
 
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     val executor = Executors.newSingleThreadExecutor()

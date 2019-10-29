@@ -1,11 +1,7 @@
 package com.example.barcodetest
 
-import android.animation.Animator
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
-import android.view.animation.BounceInterpolator
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.barcodetest.view.LoginActivity
 import com.google.firebase.FirebaseApp
@@ -16,9 +12,9 @@ class WelcomeSplash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_activity)
         FirebaseApp.initializeApp(this)
-        showAnimation()
     }
 
+    /*
     fun showAnimation() {
         val spalshTextView: TextView = findViewById(R.id.textTitle)
         val valueAnimator = ValueAnimator.ofFloat(0f, 1f)
@@ -47,4 +43,10 @@ class WelcomeSplash : AppCompatActivity() {
 
         valueAnimator.start()
     }
+
+     */
+
+
+
+
 }

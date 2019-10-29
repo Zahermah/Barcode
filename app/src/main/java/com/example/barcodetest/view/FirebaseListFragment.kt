@@ -16,9 +16,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt
-import uk.co.samuelwall.materialtaptargetprompt.extras.backgrounds.CirclePromptBackground
-import uk.co.samuelwall.materialtaptargetprompt.extras.focals.CirclePromptFocal
 
 class FirebaseListFragment : Fragment() {
 
@@ -36,7 +33,7 @@ class FirebaseListFragment : Fragment() {
     ): View? {
         rootView = inflater.inflate(R.layout.testforfirebase, container, false)
         listView = rootView.findViewById(R.id.FirebaseListView)
-        floatingActionButton = rootView.findViewById(R.id.float_action_button)
+        //floatingActionButton = rootView.findViewById(R.id.float_action_button)
         mutableList = mutableListOf()
         return rootView
     }
@@ -44,7 +41,7 @@ class FirebaseListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         readFromFirebase()
-        promptLogIn()
+        //  promptLogIn()
     }
 
     /*
@@ -56,6 +53,7 @@ class FirebaseListFragment : Fragment() {
         })
     }
 */
+    /*
     fun promptLogIn() {
         MaterialTapTargetPrompt.Builder(this@FirebaseListFragment)
             .setTarget(rootView.findViewById<View>(R.id.float_action_button))
@@ -71,6 +69,7 @@ class FirebaseListFragment : Fragment() {
             }
             .show()
     }
+    */
 
     fun readFromFirebase() {
         val databaseReference = FirebaseDatabase.getInstance().getReference("EAN")

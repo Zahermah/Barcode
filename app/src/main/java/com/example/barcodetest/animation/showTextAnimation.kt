@@ -1,6 +1,7 @@
 package com.example.barcodetest.animation
 
 import android.animation.Animator
+import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
 import android.view.animation.BounceInterpolator
 import com.example.barcodetest.view.LoginActivity
