@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">BarcodeScanner</string>
     <string name="title_activity_bottom__navigation_">Bottom_Navigation_Activity</string>
+    <string name="title_scanned_items">Scanned Items</string>
+    <string name="title_barcode_reader">Barcode Reader</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>

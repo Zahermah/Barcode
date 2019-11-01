@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
     private val REQUEST_CAMERA_Permission = arrayOf(Manifest.permission.CAMERA)
     private val REQUEST_CODE = 10
 
-
     private val onNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
 

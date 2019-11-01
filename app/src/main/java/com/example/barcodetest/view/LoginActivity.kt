@@ -44,11 +44,11 @@ open class LoginActivity : AppCompatActivity() {
     }
 
     fun setSplashy() {
-        Splashy(this)         // For JAVA : new Splashy(this)
+        Splashy(this)
             .setLogo(R.drawable.barcodereader)
             .setTitle(R.string.app_name)
             .setTitleColor(R.color.color_amber_dark_400)
-            .setSubTitle("For your Scanning purpose")
+            .setSubTitle("For your Scanning purpose :)")
             .setProgressColor(R.color.white)
             .setBackgroundResource(R.color.color_teal_dark_700)
             .setAnimation(Splashy.Animation.SLIDE_LEFT_ENTER)

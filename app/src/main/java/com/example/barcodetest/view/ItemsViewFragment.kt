@@ -92,28 +92,33 @@ class ItemsViewFragment : Fragment() {
             counter++
             getChunkedEanItems(eanNumbers)
         }
-        //ItemsViewFragment().getChunkedEanList(newList)
     }
 
     fun getChunkedEanItems(eanCode: List<String?>) {
         val service =
             RetrofitInstance().getRetrofitInstance().create(getItemApi::class.java)
-
+        val showProgress = context?.let { ShowProgress(it) }
         GlobalScope.launch(Dispatchers.Main) {
             repeat(eanCode.size) { count ->
+                context?.let { showProgress?.showDialog(it) }
                 val call = service.getItemsData(eanCode[count].toString())
                 delay(10000)
                 call.enqueue(object : Callback<ItemsList> {
                     override fun onFailure(call: Call<ItemsList>, t: Throwable) {
-                        Toast.makeText(context, "Could not fetch data", Toast.LENGTH_LONG)
-                            .show()
+                        if (context != null) {
+                            Toast.makeText(context, "Could not fetch data", Toast.LENGTH_LONG)
+                                .show()
+                        }
+
                     }
 
                     override fun onResponse(
                         call: Call<ItemsList>,
                         response: Response<ItemsList>
                     ) {
+                        showProgress?.dismissPopup()
                         if (response.isSuccessful) {
+
                             if (context != null) {
                                 Toast.makeText(
                                     context,
@@ -139,18 +144,22 @@ class ItemsViewFragment : Fragment() {
         val service =
             RetrofitInstance().getRetrofitInstance().create(getItemApi::class.java)
         val showProgress = context?.let { ShowProgress(it) }
+        context?.let { showProgress?.showDialog(it) }
         GlobalScope.launch(Dispatchers.Main) {
             repeat(eanCode.size) { count ->
                 val call = service.getItemsData(eanCode[count].toString())
                 delay(2500)
-                context?.let { showProgress?.showDialog(it) }
                 call.enqueue(object : Callback<ItemsList> {
                     override fun onFailure(call: Call<ItemsList>, t: Throwable) {
-                        Toast.makeText(context, "Could not fetch data", Toast.LENGTH_LONG)
-                            .show()
+                        if (context != null) {
+                            Toast.makeText(context, "Could not fetch data", Toast.LENGTH_LONG)
+                                .show()
+                        }
+
                     }
 
                     override fun onResponse(call: Call<ItemsList>, response: Response<ItemsList>) {
+                        showProgress?.dismissPopup()
                         if (response.isSuccessful) {
                             if (context != null) {
                                 Toast.makeText(
@@ -159,7 +168,6 @@ class ItemsViewFragment : Fragment() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
-                            showProgress?.dismissPopup()
                             response.body()?.getitemsArrayList()
                                 ?.let { generateItemsList(it) }
                         }
@@ -195,7 +203,7 @@ class ItemsViewFragment : Fragment() {
 
     fun addItems(items: ArrayList<Items>): ArrayList<Items> {
         listOfItems.addAll(items)
-        recyclerView.adapter?.notifyDataSetChanged()
+        // recyclerView.adapter?.notifyDataSetChanged()
         return listOfItems
     }
 
@@ -218,8 +226,9 @@ class ItemsViewFragment : Fragment() {
                 databaseReference.child(listOfItemsID[position]).removeValue()
                 Log.i(TAG + "GODA", listOfItemsID[position])
                 listOfItems.removeAt(position)
-                recyclerView.adapter?.notifyDataSetChanged()
+                //  recyclerView.adapter?.notifyDataSetChanged()
                 Snackbar.make(rootView, "Removed", Snackbar.LENGTH_SHORT).show()
+
             }
         }
 }
