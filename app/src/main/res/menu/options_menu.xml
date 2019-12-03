@@ -4,4 +4,8 @@
             android:id="@+id/Login_User"
             android:icon="@drawable/ic_account"
             android:title="@string/title_login" />
+    <item
+        android:id="@+id/License_rights"
+        android:icon="@drawable/ic_account"
+        android:title="@string/title_license_rights" />
 </menu>

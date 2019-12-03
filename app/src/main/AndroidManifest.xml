@@ -15,10 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-                android:name=".view.LoginActivity"
-                android:configChanges="orientation|keyboardHidden|screenSize"
-                android:screenOrientation="portrait"
-                android:theme="@style/AppTheme.NoActionBar">
+            android:name=".License.FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/FullscreenTheme"/>
+        <activity
+            android:name=".view.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,8 +31,8 @@
             </intent-filter>
         </activity>
         <activity
-                android:name=".MainActivity"
-                android:screenOrientation="portrait" />
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".FingerPrint.FingerPrint" />
         <activity android:name=".presenter.LoginAuthticate" />
         <activity android:name=".view.Utility.ShowProgress" />

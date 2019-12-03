@@ -12,10 +12,15 @@
     <string name="title_finger_print">Use FingerPrint</string>
     <string name="title_signup">Sign up</string>
     <string name="title_firebase">Firebase list</string>
+    <string name="title_license_rights">Licenserights</string>
     <string name="title_loadingBar">Lodaring list...</string>
     <string name="title_Camerax">Camerax</string>
     <string name="title_remove_item">Remove Item</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
